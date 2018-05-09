@@ -1,0 +1,84 @@
+/*!
+ * Autor: Mauricio Osorno Fallas
+ * Copyright 2018 Mauricio
+ */
+ @font-face {
+ font-family: "Asap";
+ font-weight: 400;
+ src: local("Asap Regular"), url("../fonts/asap/Asap-Regular.woff2") format("woff2"), url("../fonts/asap/Asap-Regular.woff") format("woff");
+ }
+ body{
+   line-height: 1.5;
+   font-family: "Asap", "Roboto", sans-serif;
+ }
+ .nav-wrapper .brand-logo img {
+    height: 85px;
+}
+.main{
+  min-height: 450px;
+}
+ /***********************************
+ **        CAMBIA COLORES          **
+ **            DEFAULT             **
+ ***********************************/
+ .input-field input:focus + label{
+   color: #e65100 !important;
+ }
+ .row .input-field input:focus{
+   border-bottom: 1px solid #e65100 !important;
+   box-shadow: 0 1px 0 0 #e65100 !important;
+ }
+ textarea.materialize-textarea:focus:not([readonly]) {
+    border-bottom: 1px solid #e65100;
+    -webkit-box-shadow: 0 1px 0 0 #e65100;
+    box-shadow: 0 1px 0 0 #e65100;
+}
+.btnadd{
+  line-height: 40px !important;
+}
+ .prefix{
+   color: #e65100 !important;
+ }
+.dropdown-content li > a, .dropdown-content li:not(.disabled) > span{
+   color:#e65100 !important;
+ }
+ .btn{
+   background-color: #e65100 ;
+ }
+ .btn:hover{
+   background-color: #ef6c00 ;
+ }
+ /***********************************
+  **            FIN                **
+  **        CAMBIA COLORES         **
+  ***********************************/
+  .nav-wrapper a{
+    text-transform: uppercase;
+    font-weight: bold;
+  }
+  .nav-wrapper a:not(.enf):hover{
+    color: #e65100 !important;
+  }
+    .nav-wrapper  a:hover .enf {
+      background-color: #e65100 !important;
+
+  }
+ .infopaq{
+   z-index: 0;
+   height: 555px;
+   width: 400px;
+   position: absolute;
+   top: 25px;
+   right:2%;
+   background-color: black;
+   opacity: 0.5;
+   padding: 30px;
+   border-radius: 10px;
+ }
+  .infopaqtexto{
+   opacity: 0.9;
+   color: white;
+ }
+  a .bordeimg{
+    border: solid 0.3px #e0e0e0;
+  }
