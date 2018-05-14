@@ -34,4 +34,22 @@
     </div>
   </div>
 </div>
+<script>
+$('#enviar').click(function() {
+  $.post('email.php',{
+    nombre:$('#nombre').val(),
+    asunto:$('#asunto').val(),
+    correo:$('#correo').val(),
+    mensaje:$('#mensaje').val(),
+    id_propiedad:$('#id_propiedad').val(),
+
+    beforeSend: function () {
+      $('.resultado').html('Espere un momento por favor');
+     }
+   }, function (respuesta) {
+        $('.resultado').html(respuesta);
+  });
+});
+
+</script>
 <?php include 'admin/extend/footer-online.php'; ?>
