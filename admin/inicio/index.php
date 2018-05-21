@@ -1,15 +1,15 @@
   <?php include '../extend/header.php';
-$sel = $con->prepare("SELECT propiedad FROM inventario WHERE operacion = ?");
+$sel = $con->prepare("SELECT * FROM paquetes WHERE internacional = ?");
 $sel -> bind_param('s', $operacion);
   ?>
      <div class="row">
        <div class="col s12 m6 l6">
          <div class="card blue-grey darken-1">
            <div class="card-content">
-             <span class="card-title white-text"><b>venta</b></span>
+             <span class="card-title white-text"><b>Internacionales</b></span>
              <h2 align="center" class="white-text">
                 <?php
-                $operacion = 'VENTA';
+                $operacion = 0;
                 $sel -> execute();
                 $res_venta = $sel -> get_result();
                 echo mysqli_num_rows($res_venta);
@@ -17,61 +17,101 @@ $sel -> bind_param('s', $operacion);
              </h2>
            </div>
             <div class="card-action">
-              <a href="../propiedades/index.php?ope=VENTA">ver mas..</a>
+              <a href="../paquetes/index.php?inter=1">ver mas..</a>
             </div>
          </div>
        </div>
        <div class="col s12 m6 l6">
          <div class="card blue-grey darken-1">
            <div class="card-content">
-             <span class="card-title white-text"><b>renta</b></span>
+             <span class="card-title white-text"><b>Nacionales</b></span>
              <h2 align="center" class="white-text">
                 <?php
-                $operacion = 'RENTA';
+                $operacion = 1;
                 $sel -> execute();
                 $res_renta = $sel -> get_result();
                 echo mysqli_num_rows($res_renta);
+                $sel ->close();
                  ?>
              </h2>
            </div>
             <div class="card-action">
-              <a href="../propiedades/index.php?ope=RENTA">ver mas..</a>
+              <a href="../paquetes/index.php?inter=1">ver mas..</a>
             </div>
          </div>
        </div>
        <div class="col s12 m6 l6">
          <div class="card blue-grey darken-1">
            <div class="card-content">
-             <span class="card-title white-text"><b>traspaso</b></span>
+             <span class="card-title white-text"><b>Playa</b></span>
              <h2 align="center" class="white-text">
                 <?php
-                $operacion = 'TRASPASO';
+
+                $tipo = 1;
+                $sel = $con->prepare("SELECT * FROM paquetes WHERE tipo_destino = ?");
+                $sel -> bind_param('s', $tipo);
                 $sel -> execute();
-                $res_traspaso = $sel -> get_result();
-                echo mysqli_num_rows($res_traspaso);
+                $res_tipo = $sel -> get_result();
+                echo mysqli_num_rows($res_tipo);
                  ?>
              </h2>
            </div>
             <div class="card-action">
-              <a href="../propiedades/index.php?ope=TRASPASO">ver mas..</a>
+              <a href="../paquetes/index.php?tip_des=1">ver mas..</a>
             </div>
          </div>
        </div>
        <div class="col s12 m6 l6">
          <div class="card blue-grey darken-1">
            <div class="card-content">
-             <span class="card-title white-text"><b>ocupado</b></span>
+             <span class="card-title white-text"><b>Montaña</b></span>
              <h2 align="center" class="white-text">
                 <?php
-                $operacion = 'OCUPADO';
+                $tipo = 2;
                 $sel -> execute();
-                $res_ocupado = $sel -> get_result();
-                echo mysqli_num_rows($res_ocupado);
+                $res_tipo = $sel -> get_result();
+                echo mysqli_num_rows($res_tipo);
                  ?>
              </h2>
            </div>
             <div class="card-action">
-              <a href="../propiedades/index.php?ope=OCUPADO">ver mas..</a>
+              <a href="../paquetes/index.php?tip_des=2">ver mas..</a>
+            </div>
+         </div>
+       </div>
+       <div class="col s12 m6 l6">
+         <div class="card blue-grey darken-1">
+           <div class="card-content">
+             <span class="card-title white-text"><b>Cuidad</b></span>
+             <h2 align="center" class="white-text">
+                <?php
+                $tipo = 3;
+                $sel -> execute();
+                $res_tipo = $sel -> get_result();
+                echo mysqli_num_rows($res_tipo);
+                 ?>
+             </h2>
+           </div>
+            <div class="card-action">
+              <a href="../paquetes/index.php?tip_des=3">ver mas..</a>
+            </div>
+         </div>
+       </div>
+       <div class="col s12 m6 l6">
+         <div class="card blue-grey darken-1">
+           <div class="card-content">
+             <span class="card-title white-text"><b>Tour un día</b></span>
+             <h2 align="center" class="white-text">
+                <?php
+                $tipo = 4;
+                $sel -> execute();
+                $res_tipo = $sel -> get_result();
+                echo mysqli_num_rows($res_tipo);
+                 ?>
+             </h2>
+           </div>
+            <div class="card-action">
+              <a href="../paquetes/index.php?tip_des=4">ver mas..</a>
             </div>
          </div>
        </div>

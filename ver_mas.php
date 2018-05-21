@@ -1,25 +1,23 @@
 <?php include 'admin/extend/header-online.php';
 $id = htmlentities($_GET['id']);
-$sel = $con->prepare("SELECT * FROM paquetes WHERE id_paquete = ? ");
+$sel = $con->prepare("SELECT titulo, subtitulo, foto_principal, descripcion, descripcion_detallada FROM paquetes WHERE id_paquete = ? ");
 $sel->bind_param('s', $id);
 $sel->execute();
-$res = $sel->get_result();
-if ($f =$res->fetch_assoc()) {
-
-}
+$sel->bind_result($titulo,$subtitulo,$foto_principal,$descripcion,$descripcion_detallada);
+if ($sel->fetch()) {
 ?>
 <div class="container">
   <div class="row">
     <div class="col s12">
-      <h5 class="header"><?php echo $f['titulo'] ?></h5>
-      <h6 class="header"><?php echo $f['subtitulo'] ?></h6>
+      <h5 class="header"><?php echo $titulo ?></h5>
+      <h6 class="header"><?php echo $subtitulo ?></h6>
       <div class="card horizontal">
         <div class="card-image">
-          <img src="admin/paquetes/<?php echo $f['foto_principal'] ?>">
+          <img src="admin/paquetes/<?php echo $foto_principal?>">
         </div>
         <div class="card-stacked">
           <div class="card-content">
-            <p><?php echo $f['descripcion']?></p>
+            <p><?php echo $descripcion?></p>
             <div class="row">
 
             </div>
@@ -33,13 +31,14 @@ if ($f =$res->fetch_assoc()) {
      <div class="card">
        <div class="card-content">
          <div class="row">
-           <?php $sel_img = $con->prepare("SELECT * FROM imagenes WHERE id_paquete = ? ");
+           <?php $sel->close();
+           $sel_img = $con->prepare("SELECT ruta FROM imagenes WHERE id_paquete = ? ");
            $sel_img->bind_param('s', $id);
            $sel_img->execute();
-           $res_img = $sel_img->get_result();
-           while ($f_img =$res_img->fetch_assoc()) {?>
+           $sel_img->bind_result($ruta);
+           while ($sel_img->fetch()) {?>
              <div class="col s3">
-               <img src="admin/paquetes/<?php echo $f_img['ruta'] ?>" width="200" class="materialboxed" >
+               <img src="admin/paquetes/<?php echo $ruta ?>" width="200" class="materialboxed" >
              </div>
             <?php }
             ?>
@@ -55,37 +54,54 @@ if ($f =$res->fetch_assoc()) {
          <span class="card-title">DESCRIPCION DETALLADA</span>
          <div class="row">
            <div class="col s6">
-             <p><?php echo $f['descripcion_detallada']?></p>
+             <?php
+              foreach (explode("\r\n",$descripcion_detallada) as $key => $value): ?>
+               <li>
+                 <?php echo $value?>
+               </li>
+             <?php endforeach; ?>
+
            </div>
            <div class="col s6">
-               <div class="input-field">
-                 <input type="text" name="nombre" pattern="[A-Za-z/s ]+"  title=""  id="nombre" required >
-                 <label for="nombre">Nombre:</label>
-               </div>
-               <div class="input-field">
-                 <input type="text" name="telefono"   title=""  id="telefono"  >
-                 <label for="telefono">Telefono:</label>
-               </div>
-               <div class="input-field">
-                 <input type="email" name="correo"   title=""  id="correo" required  >
-                 <label for="correo">Correo:</label>
-               </div>
-               <div class="input-field">
-                 <textarea name="mensaje" rows="8" cols="80" id="mensaje" onblur="may(this.value, this.id)" class="materialize-textarea"></textarea>
-                 <label for="">Mensaje:</label>
-                 <input type="hidden" name="id_propiedad" id="id_propiedad" value="<?php echo $id ?>">
-               </div>
-               <button type="button" class="btn" id = "enviar">Enviar</button>
-               <div class="resultado"></div>
+
            </div>
+         </div>
+         <div class="">
+           <td class="borrar"><button data-target="modal1" onclick="enviar(this.value)"
+             value="<?php echo $id ?>" class="btn modal-trigger tooltipped"
+             data-position="top" data-tooltip="Ver condiciones del paquete: <?php echo $titulo?>">Condiciones</button></td>
+
          </div>
        </div>
      </div>
    </div>
   </div>
 </div>
-<?php include 'admin/extend/footer-online.php'; ?>
+<div id="modal1" class="modal">
+  <div class="modal-content">
+    <h4>Informacion</h4>
+    <div class="res_modal">
+
+    </div>
+  </div>
+  <div class="modal-footer">
+    <a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat">CERRAR</a>
+  </div>
+</div>
+<?php }
+include 'admin/extend/footer-online.php'; ?>
 <script>
+  $('.modal').modal();
+  function enviar(valor) {
+      $.get('modal.php', {
+        id:valor,
+        beforeSend: function () {
+          $('.res_modal').html('Espere un momento por favor');
+         }
+       }, function (respuesta) {
+            $('.res_modal').html(respuesta);
+      });
+    }
   $('.materialboxed').materialbox();
   $('#enviar').click(function() {
     $.post('ins_comentario.php',{

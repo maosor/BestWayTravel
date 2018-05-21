@@ -3,18 +3,18 @@ include '../extend/libreria.php';
 if (isset($_GET['tip_des'])) {
   $tipo_destino = $con->real_escape_string(htmlentities($_GET['tip_des']));
   $sel = $con->prepare("SELECT id, id_paquete, titulo, subtitulo, descripcion, precio, descripcion_detallada,
-    condiciones, dias, continente, pais, foto_principal, tipo_destino, internacional, oferta FROM paquetes WHERE tipo_destino = ? ");
+    condiciones, dias, continente, pais, foto_principal, tipo_destino, internacional, oferta, mostrar, favorito FROM paquetes WHERE tipo_destino = ? ");
   $sel->bind_param("i", $tipo_destino);
 }
 else if (isset($_GET['inter'])) {
   $es_inter = $con->real_escape_string(htmlentities($_GET['inter']));
   $sel = $con->prepare("SELECT id, id_paquete, titulo, subtitulo, descripcion, precio, descripcion_detallada,
-    condiciones, dias, continente, pais, foto_principal, tipo_destino, internacional, oferta FROM paquetes WHERE internacional = ? ");
+    condiciones, dias, continente, pais, foto_principal, tipo_destino, internacional, oferta, mostrar, favorito FROM paquetes WHERE internacional = ? ");
   $sel->bind_param("b", $es_inter);
 }
 else {
   $sel = $con->prepare("SELECT id, id_paquete, titulo, subtitulo, descripcion, precio, descripcion_detallada,
-    condiciones, dias, continente, pais, foto_principal, tipo_destino, internacional, oferta FROM paquetes");
+    condiciones, dias, continente, pais, foto_principal, tipo_destino, internacional, oferta, mostrar, favorito FROM paquetes");
 }
 ?>
 
@@ -46,12 +46,20 @@ else {
 
         </form> -->
           <span class="card-title">Paquetes  <a href="alta_paquete.php" class="btn btn-floating green">
-            <i class="material-icons btnadd">add</i></a></span>
+            <i class="material-icons btnadd">add</i></a> <i class="small yellow-text material-icons">local_offer</i> Oferta</span>
         <table class="excel" border="1">
           <thead>
+          <tr>
+            <td colspan="16">
+              <i class="yellow-text material-icons">local_offer</i> Oferta |
+              <i class="lime-text accent-4 material-icons">slideshow</i> Mostrar |
+              <i class="purple-text darken-4 material-icons">grade</i> Favorito
+            </td>
+
+          </tr>
             <tr class="cabecera">
               <th class="borrar">Vista</th>
-              <th>Oferta</th>
+              <th colspan="3"></th>
               <th>Título</th>
               <th>Subtítulo</th>
               <th>Precio</th>
@@ -71,10 +79,24 @@ else {
                 value="<?php echo $f['id_paquete']?>" class="btn modal-trigger btn-floating"><i class="material-icons">
               visibility</i><?php echo $f['oferta']?></button></td>
               <td>
-                <?php if ($f['oferta']== ''): ?>
-                  <a href="oferta.php?id=<?php echo $f['id_paquete']?>&oferta=1"><i class="small grey-text material-icons">grade</i></a>
+                <?php if ($f['oferta']== 0): ?>
+                  <a href="marcado.php?id=<?php echo $f['id_paquete']?>&oferta=1"><i class="small grey-text material-icons">local_offer</i></a>
                 <?php else: ?>
-                  <a href="oferta.php?id=<?php echo $f['id_paquete']?>&ofreta=0"><i class="small green-text material-icons">grade</i></a>
+                  <a href="marcado.php?id=<?php echo $f['id_paquete']?>&oferta=0"><i class="small yellow-text material-icons">local_offer</i></a>
+                <?php endif; ?>
+              </td>
+              <td>
+                <?php if ($f['mostrar']== 0): ?>
+                  <a href="marcado.php?id=<?php echo $f['id_paquete']?>&mostrar=1"><i class="small grey-text material-icons">slideshow</i></a>
+                <?php else: ?>
+                  <a href="marcado.php?id=<?php echo $f['id_paquete']?>&mostrar=0"><i class="small lime-text accent-4 material-icons">slideshow</i></a>
+                <?php endif; ?>
+              </td>
+              <td>
+                <?php if ($f['favorito']== 0): ?>
+                  <a href="marcado.php?id=<?php echo $f['id_paquete']?>&favorito=1"><i class="small grey-text material-icons">grade</i></a>
+                <?php else: ?>
+                  <a href="marcado.php?id=<?php echo $f['id_paquete']?>&favorito=0"><i class="small purple-text darken-4 material-icons">grade</i></a>
                 <?php endif; ?>
               </td>
               <td><?php echo $f['titulo'] ?></td>
@@ -84,6 +106,10 @@ else {
               <td><?php echo $f['pais'] ?></td>
               <td><?php echo tipo_destino($f['internacional']) ?></td>
               <td><?php echo destino($f['tipo_destino']) ?></td>
+              <td class="borrar"><a href="hotel.php?id=<?php echo $f['id_paquete']?>" class="btn-floating blue darken-4"><i
+                class="material-icons">hotel</i></a></td>
+                <td class="borrar"><a href="lugares_visitar.php?id=<?php echo $f['id_paquete']?>" class="btn-floating red darken-4"><i
+                  class="material-icons">place</i></a></td>
               <td class="borrar"><a href="imagenes.php?id=<?php echo $f['id_paquete']?>" class="btn-floating pink"><i
                 class="material-icons">image</i></a></td>
               <td class="borrar"><a href="alta_paquete.php?id=<?php echo $f['id_paquete']?>" class="btn-floating blue"><i

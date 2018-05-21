@@ -4,19 +4,20 @@ if(isset($_GET['id']))
 {
   $id = $con->real_escape_string(htmlentities($_GET['id']));
   $sel = $con->prepare("SELECT id, id_paquete, titulo, subtitulo, descripcion, precio, descripcion_detallada,
-    condiciones, dias, continente, pais, foto_principal, tipo_destino, internacional, oferta, mostrar FROM paquetes
+    condiciones, dias, continente, pais, foto_principal, tipo_destino, internacional, oferta, mostrar, favorito FROM paquetes
     WHERE id_paquete = ?");
   $sel->bind_param("s", $id);
   $sel -> execute();
   $sel->bind_result( $consecutivo, $id_paquete, $titulo, $subtitulo, $descripcion, $precio, $descripcion_detallada,
-     $condiciones, $dias, $continente, $pais, $foto_principal, $tipo_destino, $internacional, $oferta, $mostrar);
+     $condiciones, $dias, $continente, $pais, $foto_principal, $tipo_destino, $internacional, $oferta, $mostrar, $favorito);
   $sel->fetch();
   $accion = 'Actualizar';
   $sel -> close();
 }else {
   $accion = 'Insertar';
   $consecutivo =''; $id_paquete =''; $titulo =''; $subtitulo =''; $descripcion =''; $precio =''; $descripcion_detallada ='';
-    $condiciones =''; $dias =''; $continente =''; $pais =''; $foto_principal =''; $tipo_destino =''; $internacional =''; $oferta =''; $mostrar ='';
+    $condiciones =''; $dias =''; $continente =''; $pais =''; $foto_principal =''; $tipo_destino =''; $internacional =''; $oferta ='';
+    $mostrar =''; $favorito ='';
   }
 
 ?>
@@ -39,7 +40,12 @@ if(isset($_GET['id']))
     <div class="card">
       <div class="card-content">
         <h5 align="center"><b>DATOS GENERALES</b></h5>
-        <form  action="ins_paquete.php" method="post" autocomplete="off" >
+        <?php if ($accion == 'Actualizar'): ?>
+          <form  action="up_paquete.php" method="post" autocomplete="off">
+            <input type="hidden" name="id" value="<?php echo $id ?>">
+        <?php else: ?>
+          <form  action="ins_paquete.php" method="post" autocomplete="off">
+         <?php endif; ?>
           <div class="row">
             <div class="col s7">
               <div class="input-field">

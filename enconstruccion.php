@@ -6,7 +6,7 @@
     <meta name = "viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <link rel="stylesheet" href="admin/css/materialize.min.css" />
-    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link href="admin/css/icons.css" rel="stylesheet">
     <link rel="shortcut icon" href="/favicon.ico" />
     <link href="admin/css/styles.css" rel="stylesheet">
     <title>BestWay Travel</title>
