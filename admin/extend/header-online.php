@@ -19,8 +19,9 @@
       <a href="https://api.whatsapp.com/send?phone=50672002542" class="right"><img class="orange darken-4 bordeimg circle z-depth-1" src="admin/img/whatsapp.png" style="padding: 4px;margin: 3px;"> </a>
     </nav>
       <nav class="menu white" >
+      <a href="#" data-activates="nav-mobile" class="button-collapse"><i class="material-icons">menu</i></a>
       <div class="nav-wrapper">
-      <a href="index.php" class="blue-grey-text brand-logo lelf"><img class="grey lighten-5"src="admin/img/logo-png.png" /></a>
+      <a href="index.php" class="blue-grey-text brand-logo lelf"><img src="admin/img/logo-png.png" /></a>
         <ul id="nav-mobile" class="right hide-on-med-and-down">
           <li><a href="index.php" class="blue-grey-text text-darken-2 center">Nosotros</a></li>
           <li><a href="paquetes.php?inter=1" class="blue-grey-text text-darken-2 center">Internacionales</a></li>

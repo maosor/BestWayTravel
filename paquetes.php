@@ -3,24 +3,24 @@ include 'admin/extend/header-online.php';
 if (isset($_GET['tip_des'])) {
   $tipo_destino = $con->real_escape_string(htmlentities($_GET['tip_des']));
   $sel = $con->prepare("SELECT id, id_paquete, titulo, subtitulo, descripcion, precio, descripcion_detallada,
-    condiciones, dias, continente, pais, foto_principal, tipo_destino, internacional, oferta FROM paquetes WHERE tipo_destino = ? ");
+    condiciones, dias, continente, pais, foto_principal, tipo_destino, internacional, oferta FROM paquetes WHERE tipo_destino = ? and mostrar = 1");
   $sel->bind_param("i", $tipo_destino);
 }
 else if (isset($_GET['inter'])) {
   $es_inter = $con->real_escape_string(htmlentities($_GET['inter']));
   $sel = $con->prepare("SELECT id, id_paquete, titulo, subtitulo, descripcion, precio, descripcion_detallada,
-    condiciones, dias, continente, pais, foto_principal, tipo_destino, internacional, oferta FROM paquetes WHERE internacional = ? ");
+    condiciones, dias, continente, pais, foto_principal, tipo_destino, internacional, oferta FROM paquetes WHERE internacional = ? and mostrar = 1");
   $sel->bind_param("i", $es_inter);
 }
 else if (isset($_GET['oferta'])) {
   $es_oferta = $con->real_escape_string(htmlentities($_GET['oferta']));
   $sel = $con->prepare("SELECT id, id_paquete, titulo, subtitulo, descripcion, precio, descripcion_detallada,
-    condiciones, dias, continente, pais, foto_principal, tipo_destino, internacional, oferta FROM paquetes WHERE oferta = ? ");
+    condiciones, dias, continente, pais, foto_principal, tipo_destino, internacional, oferta FROM paquetes WHERE oferta = ? and mostrar = 1");
   $sel->bind_param("i", $es_oferta);
 }
 else {
   $sel = $con->prepare("SELECT id, id_paquete, titulo, subtitulo, descripcion, precio, descripcion_detallada,
-    condiciones, dias, continente, pais, foto_principal, tipo_destino, internacional, oferta FROM paquetes");
+    condiciones, dias, continente, pais, foto_principal, tipo_destino, internacional, oferta FROM paquetes WHERE mostrar = 1");
 }
 ?>
     <div class="row main">

@@ -27,7 +27,7 @@
     <div class="row">
       <?php
       $sel_marc = $con->prepare("SELECT id, id_paquete, titulo, subtitulo, descripcion, precio, descripcion_detallada,
-        condiciones, dias, continente, pais, foto_principal, tipo_destino, internacional, oferta FROM paquetes WHERE oferta = 1 ");
+        condiciones, dias, continente, pais, foto_principal, tipo_destino, internacional, oferta FROM paquetes WHERE oferta = 1 and mostrar = 1");
       $sel_marc -> execute();
       $sel_marc -> bind_result($id, $id_paquete, $titulo, $subtitulo, $descripcion, $precio, $descripcion_detallada,
         $condiciones, $dias, $continente, $pais, $foto_principal, $tipo_destino, $internacional, $oferta);

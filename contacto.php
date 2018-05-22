@@ -5,9 +5,11 @@
       <div class="card-content">
         <span class="card-title">Contacto</span>
         <div class="row">
-          <div class="col s6">
-            <iframe src="https://www.google.com/maps/embed?pb=!1m10!1m8!1m3!1d15717.19657734039!2d-84.2542193!3d9.99212985!3m2!1i1024!2i768!4f13.1!5e0!3m2!1ses!2scr!4v1519962002279"
-            width="600" height="450" frameborder="0" style="border:0" allowfullscreen class="z-depth-4"></iframe>
+          <div id = "map" class="col s6">
+            <iframe src="admin/extend/mapa.php" width="100%" height="500"
+              frameborder="0" class="z-depth-4"></iframe>
+            <!-- <iframe src="https://www.google.com/maps/embed?pb=!1m10!1m8!1m3!1d15717.19657734039!2d-84.2542193!3d9.99212985!3m2!1i1024!2i768!4f13.1!5e0!3m2!1ses!2scr!4v1519962002279"
+            width="600" height="450" frameborder="0" style="border:0" allowfullscreen class="z-depth-4"></iframe> -->
           </div>
           <div class="col s6">
             <div class="input-field">

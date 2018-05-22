@@ -46,7 +46,7 @@ else {
 
         </form> -->
           <span class="card-title">Paquetes  <a href="alta_paquete.php" class="btn btn-floating green">
-            <i class="material-icons btnadd">add</i></a> <i class="small yellow-text material-icons">local_offer</i> Oferta</span>
+            <i class="material-icons btnadd">add</i></a></span>
         <table class="excel" border="1">
           <thead>
           <tr>
@@ -72,51 +72,48 @@ else {
           </thead>
           <?php
           $sel->execute();
-          $res = $sel->get_result();
-          while ($f =$res->fetch_assoc()) {?>
+          $sel->bind_result($id, $id_paquete, $titulo, $subtitulo, $descripcion, $precio, $descripcion_detallada,
+            $condiciones, $dias, $continente, $pais, $foto_principal, $tipo_destino, $internacional, $oferta, $mostrar, $favorito);
+          while ($sel->fetch()) {?>
             <tr>
               <td class="borrar"><button data-target="modal1" onclick="enviar(this.value)"
-                value="<?php echo $f['id_paquete']?>" class="btn modal-trigger btn-floating"><i class="material-icons">
-              visibility</i><?php echo $f['oferta']?></button></td>
+                value="<?php echo $id_paquete?>" class="btn modal-trigger btn-floating"><i class="material-icons">
+              visibility</i><?php echo $oferta?></button></td>
               <td>
-                <?php if ($f['oferta']== 0): ?>
-                  <a href="marcado.php?id=<?php echo $f['id_paquete']?>&oferta=1"><i class="small grey-text material-icons">local_offer</i></a>
+                <?php if ($oferta= 0): ?>
+                  <a href="marcado.php?id=<?php echo $id_paquete?>&oferta=1"><i class="small grey-text material-icons">local_offer</i></a>
                 <?php else: ?>
-                  <a href="marcado.php?id=<?php echo $f['id_paquete']?>&oferta=0"><i class="small yellow-text material-icons">local_offer</i></a>
+                  <a href="marcado.php?id=<?php echo $fid_paquete?>&oferta=0"><i class="small yellow-text material-icons">local_offer</i></a>
                 <?php endif; ?>
               </td>
               <td>
-                <?php if ($f['mostrar']== 0): ?>
-                  <a href="marcado.php?id=<?php echo $f['id_paquete']?>&mostrar=1"><i class="small grey-text material-icons">slideshow</i></a>
+                <?php if ($mostrar== 0): ?>
+                  <a href="marcado.php?id=<?php echo $id_paquete?>&mostrar=1"><i class="small grey-text material-icons">slideshow</i></a>
                 <?php else: ?>
-                  <a href="marcado.php?id=<?php echo $f['id_paquete']?>&mostrar=0"><i class="small lime-text accent-4 material-icons">slideshow</i></a>
+                  <a href="marcado.php?id=<?php echo $id_paquete?>&mostrar=0"><i class="small lime-text accent-4 material-icons">slideshow</i></a>
                 <?php endif; ?>
               </td>
               <td>
-                <?php if ($f['favorito']== 0): ?>
-                  <a href="marcado.php?id=<?php echo $f['id_paquete']?>&favorito=1"><i class="small grey-text material-icons">grade</i></a>
+                <?php if ($favorito== 0): ?>
+                  <a href="marcado.php?id=<?php echo $fid_paquete?>&favorito=1"><i class="small grey-text material-icons">grade</i></a>
                 <?php else: ?>
-                  <a href="marcado.php?id=<?php echo $f['id_paquete']?>&favorito=0"><i class="small purple-text darken-4 material-icons">grade</i></a>
+                  <a href="marcado.php?id=<?php echo $fid_paquete?>&favorito=0"><i class="small purple-text darken-4 material-icons">grade</i></a>
                 <?php endif; ?>
               </td>
-              <td><?php echo $f['titulo'] ?></td>
-              <td><?php echo $f['subtitulo'] ?></td>
-              <td><?php echo "$".number_format($f['precio'],2); ?></td>
-              <td><?php echo $f['dias'] ?></td>
-              <td><?php echo $f['pais'] ?></td>
-              <td><?php echo tipo_destino($f['internacional']) ?></td>
-              <td><?php echo destino($f['tipo_destino']) ?></td>
-              <td class="borrar"><a href="hotel.php?id=<?php echo $f['id_paquete']?>" class="btn-floating blue darken-4"><i
-                class="material-icons">hotel</i></a></td>
-                <td class="borrar"><a href="lugares_visitar.php?id=<?php echo $f['id_paquete']?>" class="btn-floating red darken-4"><i
-                  class="material-icons">place</i></a></td>
-              <td class="borrar"><a href="imagenes.php?id=<?php echo $f['id_paquete']?>" class="btn-floating pink"><i
+              <td><?php echo $titulo ?></td>
+              <td><?php echo $subtitulo ?></td>
+              <td><?php echo "$".number_format($precio,2); ?></td>
+              <td><?php echo $dias ?></td>
+              <td><?php echo $pais ?></td>
+              <td><?php echo tipo_destino($internacional) ?></td>
+              <td><?php echo destino($tipo_destino) ?></td>
+              <td class="borrar"><a href="imagenes.php?id=<?php echo $id_paquete?>" class="btn-floating pink"><i
                 class="material-icons">image</i></a></td>
-              <td class="borrar"><a href="alta_paquete.php?id=<?php echo $f['id_paquete']?>" class="btn-floating blue"><i
+              <td class="borrar"><a href="alta_paquete.php?id=<?php echo $id_paquete?>" class="btn-floating blue"><i
                 class="material-icons">edit</i></a></td>
               <td class="borrar"><a href="#" class="btn-floating red" onclick="swal({title: '¿Esta seguro que desea eliminar el paquete?',
                 type: 'warning',showCancelButton: true, confirmButtonColor: '#3085d6', cancelButtonColor: '#d33', confirmButtonText: 'Si, Eliminarlo!'
-              }).then((result) => { if (result.value){location.href='eliminar_paquete.php?id=<?php echo $f['id_paquete']?>';}})"><i class="material-icons">delete</i></a></td>
+              }).then((result) => { if (result.value){location.href='eliminar_paquete.php?id=<?php echo $id_paquete?>';}})"><i class="material-icons">delete</i></a></td>
 
             </tr>
           <?php }

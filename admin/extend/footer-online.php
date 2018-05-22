@@ -1,22 +1,55 @@
 <footer class="blue-grey page-footer">
   <div class="container">
     <div class="row">
-      <div class="col l4 s2">
-        <h5 class="white-text"><a class="btn-floating blue-grey lighten-1" ><i class="material-icons">call</i></a> Teléfonos: </h5>
-        <p class="grey-text text-lighten-4">Llámenos al (506) 2101-0042</p>
-        <h5 class="white-text"><a class="btn-floating blue-grey lighten-1" ><img src="admin/img/whatsapp.png" style="padding: 9px;" alt=""></a>  Asistencia WhatsApp: </h5>
-        <p class="grey-text text-lighten-4">(506) 7200-2542</p>
+      <div class="col l4 m4 s12">
+        <div class="col s1">
+          <i class="material-icons">call</i>
+        </div>
+        <div class="col s11">
+          <b class="white-text">Teléfonos: </b>
+          <br>(506) 2101-0042</p>
+        </div>
+        <div class="col s1">
+          <img src="admin/img/whatsapp.png" alt="">
+        </div>
+        <div class="col s11">
+          <b class="white-text">WhatsApp: </b>
+          <br>(506) 7200-2542</p>
+        </div>
       </div>
-      <div class="col l4 s2">
-        <h5 class="white-text"><a class="btn-floating blue-grey lighten-1" ><i class="material-icons">email</i></a> Correo Electrónico: </h5>
-        <p class="grey-text text-lighten-4">info@bestwaytravelcr.com</p>
-        <h5 class="white-text"><a class="btn-floating blue-grey lighten-1" ><img src="admin/img/facebook.png" style="padding: 9px;" alt=""> </a> Siguenos en Facebook: </h5>
-        <p class="grey-text text-lighten-4">/bestwaytravelcr</p>
+      <div class="col l4 m4 s12">
+        <div class="col s1">
+          <i class="material-icons">email</i>
+        </div>
+        <div class="col s11">
+          <b class="white-text">Correo Electrónico: </b>
+          <br>info@bestwaytravelcr.com</p>
+        </div>
+        <div class="col s1">
+          <img src="admin/img/facebook.png" alt="">
+        </div>
+        <div class="col s11">
+          <b class="white-text">Siguenos en Facebook: </b>
+          <br>/bestwaytravelcr</p>
+        </div>
       </div>
-      <div class="col l4 s2">
-        <h5 class="white-text"><a class="btn-floating blue-grey lighten-1" ><i class="material-icons">schedule</i></a> Horarios: </h5>
-        <p class="grey-text text-lighten-4">Lunes a Viernes de 8:00am – 6:00pm</p>
-        <p class="grey-text text-lighten-4">Sábados de 8:00am – 12:00md</p>
+      <div class="col l4 m4 s12">
+        <div class="col s1">
+          <i class="material-icons">schedule</i>
+        </div>
+        <div class="col s11">
+          <b class="white-text">Horarios: </b>
+          <br>Lunes a Viernes de 8:00am – 6:00pm
+          <br>Sábados de 8:00am – 12:00md
+        </p>
+        </div>
+        <div class="col s1">
+          <i class="material-icons">payment</i>
+        </div>
+        <div class="col s11">
+          <img class="img"src="admin/img/PP_logo_h_200x51bk.png" height=30px alt="">
+        </p>
+        </div>
       </div>
     </div>
   </div>

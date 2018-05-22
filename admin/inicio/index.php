@@ -1,5 +1,5 @@
   <?php include '../extend/header.php';
-$sel = $con->prepare("SELECT * FROM paquetes WHERE internacional = ?");
+$sel = $con->prepare("SELECT id FROM paquetes WHERE internacional = ?");
 $sel -> bind_param('s', $operacion);
   ?>
      <div class="row">
@@ -11,8 +11,10 @@ $sel -> bind_param('s', $operacion);
                 <?php
                 $operacion = 0;
                 $sel -> execute();
-                $res_venta = $sel -> get_result();
-                echo mysqli_num_rows($res_venta);
+                $sel ->bind_result($id);
+                $sel -> store_result();
+                $row = $sel->num_rows;
+                echo $row;
                  ?>
              </h2>
            </div>
@@ -29,8 +31,10 @@ $sel -> bind_param('s', $operacion);
                 <?php
                 $operacion = 1;
                 $sel -> execute();
-                $res_renta = $sel -> get_result();
-                echo mysqli_num_rows($res_renta);
+                $sel ->bind_result($id);
+                $sel -> store_result();
+                $row = $sel->num_rows;
+                echo $row;
                 $sel ->close();
                  ?>
              </h2>
@@ -48,11 +52,13 @@ $sel -> bind_param('s', $operacion);
                 <?php
 
                 $tipo = 1;
-                $sel = $con->prepare("SELECT * FROM paquetes WHERE tipo_destino = ?");
+                $sel = $con->prepare("SELECT id FROM paquetes WHERE tipo_destino = ?");
                 $sel -> bind_param('s', $tipo);
                 $sel -> execute();
-                $res_tipo = $sel -> get_result();
-                echo mysqli_num_rows($res_tipo);
+                $sel ->bind_result($id);
+                $sel -> store_result();
+                $row = $sel->num_rows;
+                echo $row;
                  ?>
              </h2>
            </div>
@@ -69,8 +75,10 @@ $sel -> bind_param('s', $operacion);
                 <?php
                 $tipo = 2;
                 $sel -> execute();
-                $res_tipo = $sel -> get_result();
-                echo mysqli_num_rows($res_tipo);
+                $sel ->bind_result($id);
+                $sel -> store_result();
+                $row = $sel->num_rows;
+                echo $row;
                  ?>
              </h2>
            </div>
@@ -86,9 +94,10 @@ $sel -> bind_param('s', $operacion);
              <h2 align="center" class="white-text">
                 <?php
                 $tipo = 3;
-                $sel -> execute();
-                $res_tipo = $sel -> get_result();
-                echo mysqli_num_rows($res_tipo);
+                $sel ->bind_result($id);
+                $sel -> store_result();
+                $row = $sel->num_rows;
+                echo $row;
                  ?>
              </h2>
            </div>
@@ -105,8 +114,10 @@ $sel -> bind_param('s', $operacion);
                 <?php
                 $tipo = 4;
                 $sel -> execute();
-                $res_tipo = $sel -> get_result();
-                echo mysqli_num_rows($res_tipo);
+                $sel ->bind_result($id);
+                $sel -> store_result();
+                $row = $sel->num_rows;
+                echo $row;
                  ?>
              </h2>
            </div>
