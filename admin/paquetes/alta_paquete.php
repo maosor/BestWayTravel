@@ -4,12 +4,12 @@ if(isset($_GET['id']))
 {
   $id = $con->real_escape_string(htmlentities($_GET['id']));
   $sel = $con->prepare("SELECT id, id_paquete, titulo, subtitulo, descripcion, precio, descripcion_detallada,
-    condiciones, dias, continente, pais, foto_principal, tipo_destino, internacional, oferta, mostrar, favorito FROM paquetes
+    condiciones, dias, continente, pais, foto_principal, tipo_destino, internacional, oferta, mostrar, favorito,lugares, servicios_adicionales FROM paquetes
     WHERE id_paquete = ?");
   $sel->bind_param("s", $id);
   $sel -> execute();
   $sel->bind_result( $consecutivo, $id_paquete, $titulo, $subtitulo, $descripcion, $precio, $descripcion_detallada,
-     $condiciones, $dias, $continente, $pais, $foto_principal, $tipo_destino, $internacional, $oferta, $mostrar, $favorito);
+     $condiciones, $dias, $continente, $pais, $foto_principal, $tipo_destino, $internacional, $oferta, $mostrar, $favorito, $lugares, $servicios_adicionales);
   $sel->fetch();
   $accion = 'Actualizar';
   $sel -> close();
@@ -17,7 +17,7 @@ if(isset($_GET['id']))
   $accion = 'Insertar';
   $consecutivo =''; $id_paquete =''; $titulo =''; $subtitulo =''; $descripcion =''; $precio =''; $descripcion_detallada ='';
     $condiciones =''; $dias =''; $continente =''; $pais =''; $foto_principal =''; $tipo_destino =''; $internacional =''; $oferta ='';
-    $mostrar =''; $favorito ='';
+    $mostrar =''; $favorito ='';$lugares =''; $servicios_adicionales='';
   }
 
 ?>
@@ -82,11 +82,11 @@ if(isset($_GET['id']))
                 <?php else: ?>
                   <option value="<?php echo $pais?>" disabled><?php echo obtener_pais($pais)?></option>
                 <?php endif;
-                  $sel_pais = $con->prepare("SELECT * FROM paices order by nombre");
+                  $sel_pais = $con->prepare("SELECT id, nombre FROM paices order by nombre");
                   $sel_pais -> execute();
-                  $res_pais = $sel_pais -> get_result();
-                  while ($f_pais =$res_pais->fetch_assoc()) {?>
-                    <option value="<?php echo $f_pais['id']?>" ><?php echo $f_pais['nombre']?></option>
+                  $sel_pais -> bind_result($idp, $nombre);
+                  while ($sel_pais->fetch()) {?>
+                    <option value="<?php echo $idp?>" ><?php echo $nombre?></option>
                   <?php }
                   $sel_pais->close();
                  ?>
@@ -131,7 +131,7 @@ if(isset($_GET['id']))
           <div class="col s12">
             <div class="input-field">
               <textarea name="descripcion_detallada" class="materialize-textarea" maxlength=1000><?php echo $descripcion_detallada?></textarea>
-              <label for="descripcion_detallada">Descripcion detallada</label>
+              <label for="descripcion_detallada">El Precio Incluye</label>
             </div>
           </div><!--Termina Primer columna -->
         </div>
@@ -140,6 +140,20 @@ if(isset($_GET['id']))
             <div class="input-field">
               <textarea name="condiciones" class="materialize-textarea" maxlength=400><?php echo $condiciones?></textarea>
               <label for="condiciones">Condiciones</label>
+            </div>
+          </div><!--Termina Primer columna -->
+        </div>
+        <div class="row">
+          <div class="col s6">
+            <div class="input-field">
+              <textarea name="lugares" class="materialize-textarea" maxlength=400><?php echo $lugares?></textarea>
+              <label for="lugares">Tour opcionales</label>
+            </div>
+          </div><!--Termina Primer columna -->
+          <div class="col s6">
+            <div class="input-field">
+              <textarea name="servicios_adicionales" class="materialize-textarea" maxlength=200><?php echo $servicios_adicionales?></textarea>
+              <label for="servicios_adicionales">Servicio Adicionales</label>
             </div>
           </div><!--Termina Primer columna -->
         </div>

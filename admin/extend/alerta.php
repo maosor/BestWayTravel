@@ -8,7 +8,7 @@
   </head>
   <body>
     <?php
-    $mensage  = htmlentities($_GET['msj']);
+    $mensage  =  html_entity_decode($_GET['msj']);
     $c = htmlentities($_GET['c']);
     $p = htmlentities($_GET['p']);
     $t = htmlentities($_GET['t']);

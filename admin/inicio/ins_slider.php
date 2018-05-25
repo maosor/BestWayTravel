@@ -37,8 +37,8 @@ foreach ($_FILES['ruta']['tmp_name'] as $key => $value) {
     header('location:../extend/alerta.php?msj=Solo se acepta formato JPG y PNG&c=home&p=sl&t=error');
     exit;
   }
-$ins = $con->prepare("INSERT INTO slider VALUES (?,?,?,?) ");
-$ins -> bind_param('isss', $id_img,$copia,$titulo,$descripcion);
+$ins = $con->prepare("INSERT INTO slider VALUES (?,?,?,?,?) ");
+$ins -> bind_param('issss', $id_img,$copia,$titulo,$descripcion, $id_paquete);
 $id_img = '';
 $ins -> execute();
 

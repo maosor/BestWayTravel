@@ -1,9 +1,9 @@
 <?php include 'admin/extend/header-online.php';
 $id = htmlentities($_GET['id']);
-$sel = $con->prepare("SELECT titulo, subtitulo, foto_principal, descripcion, descripcion_detallada FROM paquetes WHERE id_paquete = ? ");
+$sel = $con->prepare("SELECT titulo, subtitulo, foto_principal, descripcion, descripcion_detallada, lugares, servicios_adicionales FROM paquetes WHERE id_paquete = ? ");
 $sel->bind_param('s', $id);
 $sel->execute();
-$sel->bind_result($titulo,$subtitulo,$foto_principal,$descripcion,$descripcion_detallada);
+$sel->bind_result($titulo,$subtitulo,$foto_principal,$descripcion,$descripcion_detallada, $lugares,$servicios_adicionales);
 if ($sel->fetch()) {
 ?>
 <div class="container">
@@ -51,9 +51,9 @@ if ($sel->fetch()) {
    <div class="col s12">
      <div class="card">
        <div class="card-content">
-         <span class="card-title">DESCRIPCION DETALLADA</span>
          <div class="row">
            <div class="col s6">
+             <span class="card-title">PRECIO INCLUYE</span>
              <?php
               foreach (explode("\r\n",$descripcion_detallada) as $key => $value): ?>
                <li>
@@ -63,6 +63,24 @@ if ($sel->fetch()) {
 
            </div>
            <div class="col s6">
+             <div class="">
+               <span class="card-title">TOURS OPCIONALES</span>
+               <?php
+                foreach (explode("\r\n",$lugares) as $key => $value): ?>
+                 <li>
+                   <?php echo $value?>
+                 </li>
+               <?php endforeach; ?>
+             </div>
+             <div class="">
+               <span class="card-title">SERVICIOS ADICIONALES</span>
+               <?php
+                foreach (explode("\r\n",$servicios_adicionales) as $key => $value): ?>
+                 <li>
+                   <?php echo $value?>
+                 </li>
+               <?php endforeach; ?>
+             </div>
 
            </div>
          </div>

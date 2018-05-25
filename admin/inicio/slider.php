@@ -26,7 +26,23 @@
                     <textarea name="descripcion" class="materialize-textarea" maxlength=270></textarea>
                     <label for="descripcion">Descripción</label>
                   </div>
-                  <button type="submit" class="btn">Guardar</button>
+                  <div class="col s6">
+                    <?php
+                    $sel = $con->prepare("SELECT id_paquete, titulo FROM paquetes WHERE mostrar = 1 ");
+                    $sel->execute();
+                    $sel->bind_result($id_paq, $titulo);
+                    ?>
+                    <select id="id_paquete" name="id_paquete" required value = "1">
+                      <option value="0" selected disabled>SELECCIONE UN CLIENTE</option>
+                        <?php while ($sel->fetch()) {?>
+                        <option value="<?php echo $id_paq ?>"><?php echo $titulo ?></option>
+                      <?php }
+                      $sel ->close();    ?>
+                    </select>
+                  </div>
+                  <div class="">
+                    <button type="submit" class="btn">Guardar</button>
+                  </div>
               </div>
             </div>
           </div>
@@ -53,15 +69,15 @@
       <div class="card">
         <div class="card-content">
           <?php
-          $sel_img = $con->prepare("SELECT * FROM slider ");
+          $sel_img = $con->prepare("SELECT id, ruta FROM slider ");
           $sel_img -> execute();
-          $res_img = $sel_img -> get_result();
-          while ($f_img = $res_img->fetch_assoc()) { ?>
+          $sel_img -> bind_result($id, $ruta);
+          while ($sel_img->fetch()) { ?>
 
             <a href="#" onclick="swal({title: '¿Esta seguro que desea eliminar la imagen?',text: 'Al eliminarla no podrá recuperarla!',
               type: 'warning',showCancelButton: true, confirmButtonColor: '#3085d6', cancelButtonColor: '#d33', confirmButtonText: 'Si, Eliminarla!'
-            }).then((result) => { location.href='eliminar_slider.php?id=<?php echo $f_img['id']?>&ruta=<?php echo $f_img['ruta']?>';})">
-            <img src= "<?php echo $f_img['ruta']?>"alt=""></a>
+            }).then((result) => { location.href='eliminar_slider.php?id=<?php echo $id?>&ruta=<?php echo $ruta?>';})">
+            <img src= "<?php echo $ruta?>"alt=""></a>
           <?php }
           $sel_img-> close();
            ?>

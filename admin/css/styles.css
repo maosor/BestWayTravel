@@ -15,6 +15,11 @@
     height: 125px;
     padding: 10px;
 }
+.btn_vermas{
+  position: absolute;
+  top: 500px;
+  right: 10px;
+}
 nav ul a:hover {
     background-color: #fff;
 }
@@ -82,7 +87,7 @@ nav ul a:hover {
  .infopaq{
    z-index: 0;
    height: 555px;
-   width: 310px;
+   width: 345px;
    position: absolute;
    top: 25px;
    right:2%;

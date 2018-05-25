@@ -8,14 +8,14 @@ foreach ($_POST as $campo => $valor) {
 }
 
 $up = $con->prepare("UPDATE paquetes SET titulo =?, dias =?, precio =?, subtitulo =?, pais =?, internacional =?,
-   tipo_destino =?, descripcion =?, descripcion_detallada =?, condiciones =? WHERE id_paquete =? ");
-$up->bind_param("sidsiiissss", $titulo, $dias, $precio, $subtitulo, $pais, $internacional,
-$tipo_destino, $descripcion, $descripcion_detallada, $condiciones, $id);
+   tipo_destino =?, descripcion =?, descripcion_detallada =?, condiciones =?, lugares=?,servicios_adicionales=? WHERE id_paquete =? ");
+$up->bind_param("sidsiiissssss", $titulo, $dias, $precio, $subtitulo, $pais, $internacional,
+$tipo_destino, $descripcion, $descripcion_detallada, $condiciones, $lugares,$servicios_adicionales, $id);
 
 if ($up->execute()) {
   header('location:../extend/alerta.php?msj=Editó paquete&c=paq&p=in&t=success');
 }else{
-  header('location:../extend/alerta.php?msj=No editó la paquete&c=paq&p=in&t=error');
+  header('location:../extend/alerta.php?msj=No editó el paquete&c=paq&p=in&t=error');
 }
 
   $up->close();

@@ -42,6 +42,7 @@ function obtener_pais($id_pais)
   $sel->bind_param("i", $id_pais);
   $sel -> execute();
   $sel->bind_result($nombre);
+  $sel->fetch();
   $sel -> close();
   return $nombre;
 
