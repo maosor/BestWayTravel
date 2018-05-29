@@ -151,8 +151,8 @@ $sel -> bind_param('s', $operacion);
                    $sel_com->bind_param('s', $estatus);
                    $estatus = 'NUEVO';
                    $sel_com->execute();
-                   $res_nuevo = $sel_com->get_result();
-                   while ($fn =$res_nuevo->fetch_assoc()) { ?>
+                   $sel_com->get_result();
+                   while ($sel_com->fetch()) { ?>
                    <tr>
                      <td class="borrar"><button data-target="modal1" onclick="enviar(this.value)"
                        value="<?php echo $fn['id_propiedad']?>" class="btn modal-trigger btn-floating"><i class="material-icons">

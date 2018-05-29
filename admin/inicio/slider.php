@@ -32,8 +32,8 @@
                     $sel->execute();
                     $sel->bind_result($id_paq, $titulo);
                     ?>
-                    <select id="id_paquete" name="id_paquete" required value = "1">
-                      <option value="0" selected disabled>SELECCIONE UN CLIENTE</option>
+                    <select id="id_paquete" name="id_paquete" value = "1">
+                      <option value="0" selected disabled>SELECCIONE UN PAQUETE</option>
                         <?php while ($sel->fetch()) {?>
                         <option value="<?php echo $id_paq ?>"><?php echo $titulo ?></option>
                       <?php }

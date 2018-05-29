@@ -6,6 +6,7 @@
  font-family: "Asap";
  font-weight: 400;
  src: local("Asap Regular"), url("../fonts/asap/Asap-Regular.woff2") format("woff2"), url("../fonts/asap/Asap-Regular.woff") format("woff");
+
  }
  body{
    line-height: 1.5;
@@ -30,6 +31,9 @@ nav ul a:hover {
 .main{
   min-height: 450px;
 
+}
+.row .footer{
+  margin-bottom: auto;
 }
 .input-buscar{
   border: 1px solid #000 !important;

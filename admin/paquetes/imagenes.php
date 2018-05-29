@@ -3,10 +3,8 @@ $id = htmlentities($_GET['id']);
 $sel = $con->prepare("SELECT foto_principal FROM paquetes WHERE id_paquete = ?");
 $sel -> bind_param('s', $id);
 $sel -> execute();
-$res = $sel -> get_result();
-if ($f = $res->fetch_assoc()) {
-  $foto= $f['foto_principal'];
-}
+$sel -> bind_result($foto);
+$sel->fetch();
 $sel->close();
 ?>
   <div class="row">
@@ -85,16 +83,16 @@ $sel->close();
       <div class="card">
         <div class="card-content">
           <?php
-          $sel_img = $con->prepare("SELECT * FROM imagenes WHERE id_paquete = ?");
+          $sel_img = $con->prepare("SELECT id, ruta FROM imagenes WHERE id_paquete = ?");
           $sel_img -> bind_param('s', $id);
           $sel_img -> execute();
-          $res_img = $sel_img -> get_result();
-          while ($f_img = $res_img->fetch_assoc()) { ?>
+          $sel_img -> bind_result($id_img,$ruta);
+          while ($sel_img ->fetch()) { ?>
 
             <a href="#" onclick="swal({title: '¿Esta seguro que desea eliminar la imagen?',text: 'Al eliminarla no podrá recuperarla!',
               type: 'warning',showCancelButton: true, confirmButtonColor: '#3085d6', cancelButtonColor: '#d33', confirmButtonText: 'Si, Eliminarla!'
-            }).then((result) => { location.href='eliminar_img.php?id=<?php echo $f_img['id']?>&ruta=<?php echo $f_img['ruta']?>&id_paquete=<?php echo $id?>';})">
-            <img src= "<?php echo $f_img['ruta']?>"alt=""></a>
+            }).then((result) => { location.href='eliminar_img.php?id=<?php echo $id_img?>&ruta=<?php echo $ruta?>&id_paquete=<?php echo $id?>';})">
+            <img src= "<?php echo $ruta?>"alt=""></a>
           <?php }
           $sel_img-> close();
            ?>

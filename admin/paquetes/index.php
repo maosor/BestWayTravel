@@ -80,7 +80,7 @@ else {
                 value="<?php echo $id_paquete?>" class="btn modal-trigger btn-floating"><i class="material-icons">
               visibility</i><?php echo $oferta?></button></td>
               <td>
-                <?php if ($oferta= 0): ?>
+                <?php if ($oferta== 0): ?>
                   <a href="marcado.php?id=<?php echo $id_paquete?>&oferta=1"><i class="small grey-text material-icons">local_offer</i></a>
                 <?php else: ?>
                   <a href="marcado.php?id=<?php echo $id_paquete?>&oferta=0"><i class="small yellow-text material-icons">local_offer</i></a>
@@ -97,7 +97,7 @@ else {
                 <?php if ($favorito== 0): ?>
                   <a href="marcado.php?id=<?php echo $id_paquete?>&favorito=1"><i class="small grey-text material-icons">grade</i></a>
                 <?php else: ?>
-                  <a href="marcado.php?id=<?php echo $fid_paquete?>&favorito=0"><i class="small purple-text darken-4 material-icons">grade</i></a>
+                  <a href="marcado.php?id=<?php echo $id_paquete?>&favorito=0"><i class="small purple-text darken-4 material-icons">grade</i></a>
                 <?php endif; ?>
               </td>
               <td><?php echo $titulo ?></td>
