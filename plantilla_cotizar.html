@@ -1,36 +1,9 @@
-<?php
-include 'admin/conexion/conexion_web.php';
-if ($_SERVER['REQUEST_METHOD']== 'POST'){
-foreach ($_POST as $campo => $valor) {
-  $variable = "$".$campo."='".htmlentities($valor)."';";
-  eval($variable);
-}
-$header= 'MIME-Version: 1.0'."\r\n";
-$header.='Content-type: text/html; charset=UTF-8'."\r\n";
-$header.= "From: {$nombre} <{$correo}>"."\r\n";
-if (!isset(($_POST['paquete'])))
-{
-$mensaje="<html>
-<head>
-    <link rel='stylesheet' href='https://bestwaytravelcr.com/bestwaytravel/admin/css/materialize.min.css' />
-  <title>
-
-  </title>
-</head>
-<body>
-  <p>{$mensaje}</p>
-</body>
-</html>";
-}else {
-  $asunto = "Solicitud de cotización - ".$paquete;
-  $mensaje="<html>
+﻿<html>
   <head>
-    <title>
-    </title>
     <style>
     html {
-      line-height: 2;
-      font-family: 'Roboto', sans-serif;
+      line-height: 1.5;
+      font-family: "Roboto", sans-serif;
       font-weight: normal;
       color: rgba(0,0,0,0.87);
     }
@@ -41,7 +14,6 @@ $mensaje="<html>
       margin-left: auto;
       margin-right: auto;
       margin-bottom: 20px;
-      display: table-row;
     }
     .row .col.s3 {
       width: 25%;
@@ -75,74 +47,70 @@ $mensaje="<html>
         min-height: 1px;
     }
     </style>
+    <title>
+    </title>
   </head>
   <body>
   <div class='row'>
     <div class='col s12'>
       <b>Paquete o destino :</b>
-    {$paquete}
+    Orlando
     </div>
   </div>
   <div class='row'>
     <div class='col s3'>
       <b>Fecha Salida:</b>
-    {$fecha_salida}
+    2018-6-19
     </div>
     <div class='col s3'>
       <b>Fecha Regreso:</b>
-    {$fecha_regreso}
+    2018-6-30
     </div>
     <div class='col s3'>
       <b>Pasajeros Adultos:</b>
-    {$pasajeros_adultos}
+    2
     </div>
     <div class='col s3'>
       <b>Pasajeros Niños:</b>
-    {$pasajeros_ninos}
+    2
     </div>
   </div>
   <div class='row'>
     <div class='col s8'>
       <b>Nombre Completo:</b>
-    {$nombre}
+    JONAR CASTILLO OSORIO
     </div>
     <div class='col s4'>
       <b>Pais</b>
-    {$pais}
+    ALEMANIA
     </div>
   </div>
   <div class='row'>
     <div class='col s3'>
       <b>Correo:</b>
-    {$correo}
+    maosor@hotmail.com
     </div>
     <div class='col s3'>
       <b>Teléfono:</b>
-    {$telefono}
+    88257275
     </div>
     <div class='col s3'>
       <b>Teléfono Celular:</b>
-    {$celular}
+    88257275
     </div>
   </div>
   <div class='row'>
     <div class='col s12'>
       <b>Comentarios:</b>
-    {$mensaje}
+    Solo para efectos dee prueba
+Favor no responder
     </div>
   </div>
-  </body>
-  </html>";
-  $mensaje = html_entity_decode($mensaje);
-}
-$mail = mail("info@bestwaytravelcr.com", $asunto, $mensaje, $header);
-if ($mail) {
-  echo "<h4 style='color:green;'>El mensaje ha sido enviado </h4>";
-}else{
-  echo "<h4 style='color:red;'>El mensaje no pudo ser enviado </h4>";
-  }
-$con->close();
-}else {
-    echo "<h4 style='color:red;'>Utilice el formulario </h4>";
-}
- ?>
+  <div id="DAB4FAD8-2DD7-40BB-A1B8-4E2AA1F9FDF2"><br /> <table style="border-top: 1px solid #D3D4DE;">
+	<tr>
+      <td style="width: 55px; padding-top: 18px;"><a href="http://www.avg.com/email-signature?utm_medium=email&utm_source=link&utm_campaign=sig-email&utm_content=emailclient" target="_blank"><img src="https://ipmcdn.avast.com/images/icons/icon-envelope-tick-green-avg-v1.png" alt=""  width="46" height="29" style="width: 46px; height: 29px;" /></a></td>
+		<td style="width: 470px; padding-top: 17px; color: #41424e; font-size: 13px; font-family: Arial, Helvetica, sans-serif; line-height: 18px;">Libre de virus. <a href="http://www.avg.com/email-signature?utm_medium=email&utm_source=link&utm_campaign=sig-email&utm_content=emailclient" target="_blank" style="color: #4453ea;">www.avg.com</a> 		</td>
+	</tr>
+</table>
+<a href="#DAB4FAD8-2DD7-40BB-A1B8-4E2AA1F9FDF2" width="1" height="1"> </a></div></body>
+  </html>

@@ -8,6 +8,37 @@
  src: local("Asap Regular"), url("../fonts/asap/Asap-Regular.woff2") format("woff2"), url("../fonts/asap/Asap-Regular.woff") format("woff");
 
  }
+ .field {
+   position: fixed;
+   top: 0;
+   right: 80px;
+   width: 300px;
+   height: 40px;
+   height: 40px;
+ }
+ .buscar {
+   line-height: 40px !important;
+   width: 200px;
+ }
+ #search{
+   line-height: 20px !important;
+   color: #e65100;
+   border-radius: 5px;
+
+ }
+ #criterio{
+   width: 200px;
+   line-height: 20px !important;
+   border:0.5px solid #e65100;
+   color:gray;
+   background-color: white;
+   height: 25px;
+   border-radius: 10px;
+   padding-left: 5px;
+ }
+ button:focus{
+   background:#e0e0e0;
+ }
  body{
    line-height: 1.5;
    font-family: "Asap", "Roboto", sans-serif;
@@ -67,7 +98,7 @@ nav ul a:hover {
 .dropdown-content li > a, .dropdown-content li:not(.disabled) > span{
    color:#e65100 !important;
  }
- .btn{
+ .btn, .picker__date-display,.picker__day--selected, .picker__day--selected:hover, .picker--focused .picker__day--selected{
    background-color: #e65100 ;
  }
  .btn:hover{

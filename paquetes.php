@@ -18,6 +18,13 @@ else if (isset($_GET['oferta'])) {
     condiciones, dias, continente, pais, foto_principal, tipo_destino, internacional, oferta FROM paquetes WHERE oferta = ? and mostrar = 1");
   $sel->bind_param("i", $es_oferta);
 }
+else if (isset($_POST['criterio'])) {
+  $criterio = $con->real_escape_string(htmlentities($_POST['criterio']));
+  $criterio= "%{$criterio}%";
+  $sel = $con->prepare("SELECT id, id_paquete, titulo, subtitulo, descripcion, precio, descripcion_detallada,
+    condiciones, dias, continente, pais, foto_principal, tipo_destino, internacional, oferta FROM paquetes WHERE titulo like ? and mostrar = 1");
+  $sel->bind_param("s", $criterio);
+}
 else {
   $sel = $con->prepare("SELECT id, id_paquete, titulo, subtitulo, descripcion, precio, descripcion_detallada,
     condiciones, dias, continente, pais, foto_principal, tipo_destino, internacional, oferta FROM paquetes WHERE mostrar = 1");

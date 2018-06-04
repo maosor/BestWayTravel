@@ -61,6 +61,7 @@
 <script>
   $('.slider').slider({height:600});
   $('select').material_select();
+  $(".button-collapse").sideNav();
   $('#estado').change(function() {
     $.post('admin/propiedades/ajax_muni.php',{
       estado:$('#estado').val(),
@@ -86,6 +87,37 @@
           $('.resultado').html(respuesta);
     });
   });
+  $('.datepicker').pickadate({
+    format:'yyyy-m-d',
+    selectMonths: true, // Creates a dropdown to control month
+    selectYears: 15, // Creates a dropdown of 15 years to control year,
+    today: 'Today',
+    clear: 'Clear',
+    close: 'Ok',
+    closeOnSelect: false // Close upon selecting a date,
+  });
+  $('#enviar_cot').click(function() {
+    $.post('email.php',{
+      paquete:$('#paquete').val(),
+      fecha_salida:$('#fecha_salida').val(),
+      fecha_regreso:$('#fecha_regreso').val(),
+      pasajeros_adultos:$('#pasajeros_adultos').val(),
+      pasajeros_ninos:$('#pasajeros_ninos').val(),
+      pais:$('#pais option:selected').text(),
+      nombre:$('#nombre').val(),
+      correo:$('#correo').val(),
+      telefono:$('#telefono').val(),
+      celular:$('#celular').val(),
+      mensaje:$('#mensaje').val(),
+      id_propiedad:$('#id_propiedad').val(),
+      beforeSend: function () {
+        $('.resultado').html('Espere un momento por favor');
+       }
+     }, function (respuesta) {
+          $('.resultado').html(respuesta);
+    });
+  });
+
 </script>
 </body>
 </html>
