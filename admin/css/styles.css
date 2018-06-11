@@ -51,6 +51,7 @@
   top: 500px;
   right: 10px;
 }
+
 nav ul a:hover {
     background-color: #fff;
 }
@@ -60,6 +61,9 @@ nav ul a:hover {
  .menu{
       height: 125px !important;
       line-height: 125px !important;
+  }
+  .img_top_menu{
+    padding: 0 5px;
   }
 .main{
   min-height: 450px;
