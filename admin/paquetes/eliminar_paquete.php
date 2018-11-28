@@ -9,8 +9,8 @@ if ($del -> execute()) {
   $sel = $con->prepare("SELECT ruta FROM imagenes WHERE id_paquete = ?");
   $sel -> bind_param('s', $id);
   $sel -> execute();
-  $res = $sel -> get_result();
-  while ($f=$res ->fetch_assoc()) {
+  $sel -> bind_result();
+  while ($sel ->fetch()) {
     if ($foto != "fotos_paquete/foto_principal") {
       unlink($f['ruta']);
     }

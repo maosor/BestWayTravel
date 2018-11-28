@@ -16,8 +16,10 @@ foreach ($_FILES['ruta']['tmp_name'] as $key => $value) {
   $heigth = $tamaño[1];
   if ($info['extension']== "JPG" || $info['extension']== "jpg") {
     $imagenvieja = imagecreatefromjpeg($ruta);
-    $nueva = imagecreatetruecolor($ancho, $alto);
-    imagecopyresampled($nueva, $imagenvieja, 0,0,0,0, $ancho, $alto, $width, $heigth);
+    $nueva = imagecreatetruecolor($width, $heigth);
+    imagecopyresampled($nueva, $imagenvieja, 0,0,0,0, $width, $heigth, $width, $heigth);
+  //  $nueva = imagecreatetruecolor($ancho, $alto);
+  //  imagecopyresampled($nueva, $imagenvieja, 0,0,0,0, $ancho, $alto, $width, $heigth);
     $cont++;
     $rand = rand(000,999);
     $renombrar =  $rand.$cont;
@@ -26,8 +28,8 @@ foreach ($_FILES['ruta']['tmp_name'] as $key => $value) {
 
   }elseif ($info['extension']== "PNG" || $info['extension']== "png") {
     $imagenvieja = imagecreatefrompng($ruta);
-    $nueva = imagecreatetruecolor($ancho, $alto);
-    imagecopyresampled($nueva, $imagenvieja, 0,0,0,0, $ancho, $alto, $width, $heigth);
+    $nueva = imagecreatetruecolor($width, $heigth);
+    imagecopyresampled($nueva, $imagenvieja, 0,0,0,0, $width, $heigth, $width, $heigth);
     $cont++;
     $rand = rand(000,999);
     $renombrar =  $id.$rand.$cont;

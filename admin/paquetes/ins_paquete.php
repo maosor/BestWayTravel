@@ -15,7 +15,7 @@ $favorito = 0;
 $continente= obtener_continente($pais);
 $ins = $con->prepare("INSERT INTO paquetes VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)");
 $ins->bind_param("issssdssiiisiiiiiss", $consecutivo, $id_paquete, $titulo, $subtitulo, $descripcion, $precio, $descripcion_detallada,
- $condiciones, $dias, $continente, $pais, $foto_principal, $tipo_destino, $internacional, $oferta, $mostrar, $favorito, $lugares, $servicios);
+ $condiciones, $dias, $continente, $pais, $foto_principal, $tipo_destino, $internacional, $oferta, $mostrar, $favorito, $lugares, $servicios_adicionales);
 
 if ($ins->execute()) {
   header('location:../extend/alerta.php?msj=Guardó paquete&c=paq&p=in&t=success');

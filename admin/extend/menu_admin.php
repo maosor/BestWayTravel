@@ -34,6 +34,6 @@
     <li><a href="../paquetes/index.php?inter=0">NACIONAL</a></li>
     <li><a href="../paquetes/index.php?tip_des=1">PLAYA</a></li>
     <li><a href="../paquetes/index.php?tip_des=2">MONTAÑA</a></li>
-    <li><a href="../paquetes/index.php?tip_des=3">CUIDAD</a></li>
+    <li><a href="../paquetes/index.php?tip_des=3">CIUDAD</a></li>
     <li><a href="../paquetes/index.php?tip_des=4">TOUR UN DIA</a></li>
    </ul>

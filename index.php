@@ -13,7 +13,10 @@
                 <h5><b><?php echo $titulo?></b></h5>
                 <div class="content">
                   <p class="flow-text"><?php echo $descripcion?></p>
-                  <a href="ver_mas.php?id=<?php echo$id_paquete?>"type="button" class="btn small btn_vermas" name="button"><i class="material-icons">more_horiz</i></a>
+                  <?php if ($id_paquete<>null): ?>
+                      <a href="ver_mas.php?id=<?php echo$id_paquete?>"type="button" class="btn small btn_vermas" name="button"><i class="material-icons">more_horiz</i></a>
+                  <?php endif; ?>
+
                 </div>
               </div>
 
@@ -27,16 +30,16 @@
     <div class="row">
       <?php
       $sel_marc = $con->prepare("SELECT id, id_paquete, titulo, subtitulo, descripcion, precio, descripcion_detallada,
-        condiciones, dias, continente, pais, foto_principal, tipo_destino, internacional, oferta FROM paquetes WHERE oferta = 1 and mostrar = 1");
+        condiciones, dias, continente, pais, foto_principal, tipo_destino, internacional, favorito FROM paquetes WHERE favorito = 1 and mostrar = 1");
       $sel_marc -> execute();
       $sel_marc -> bind_result($id, $id_paquete, $titulo, $subtitulo, $descripcion, $precio, $descripcion_detallada,
-        $condiciones, $dias, $continente, $pais, $foto_principal, $tipo_destino, $internacional, $oferta);
+        $condiciones, $dias, $continente, $pais, $foto_principal, $tipo_destino, $internacional, $favorito);
       while ($sel_marc->fetch()) {?>
       <div class="col s12 m6 l3">
         <div class="card">
           <div class="card-image">
             <img src="admin/paquetes/<?php echo $foto_principal?>">
-            <span class="card-title"><?php echo '¢'.number_format($precio, 2);?></span>
+            <span class="card-title"><?php echo '$'.number_format($precio, 2);?></span>
           </div>
           <div class="card-content">
             <p><?php echo $descripcion?></p>

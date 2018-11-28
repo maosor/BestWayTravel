@@ -90,7 +90,7 @@ $sel -> bind_param('s', $operacion);
        <div class="col s12 m6 l6">
          <div class="card blue-grey darken-1">
            <div class="card-content">
-             <span class="card-title white-text"><b>Cuidad</b></span>
+             <span class="card-title white-text"><b>Ciudad</b></span>
              <h2 align="center" class="white-text">
                 <?php
                 $tipo = 3;

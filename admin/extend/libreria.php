@@ -3,21 +3,27 @@ function tipo_destino($tipo_destino)
 {
   if ($tipo_destino == 1)
   {
-    return "Internacional";
+    return "INTERNACIONAL";
   }else {
-    return "Nacional";
+    return "NACIONAL";
   }
 }
 function destino($destino)
 {
   if ($destino == 1)
   {
-    return "Playa";
+    return "PLAYA";
   }else if($destino == 2) {
-    return "Montaña";
+    return "MONTAÑA";
   }
   else if($destino == 3) {
-    return "Tour un Día";
+    return "CIUDAD";
+  }
+  else if($destino == 4) {
+    return "TOUR DE UN DIA";
+  }
+  else if($destino == 5) {
+    return "CIUDAD Y PLAYA";
   }else {
     return "";
   }

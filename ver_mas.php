@@ -11,7 +11,7 @@ if ($sel->fetch()) {
     <div class="col s12">
       <h5 class="header"><?php echo $titulo ?></h5>
       <h6 class="header"><?php echo $subtitulo ?></h6>
-      <div class="card horizontal">
+      <div class="card m horizontal s vertical">
         <div class="card-image">
           <img src="admin/paquetes/<?php echo $foto_principal?>">
         </div>

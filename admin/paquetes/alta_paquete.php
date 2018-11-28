@@ -80,7 +80,7 @@ if(isset($_GET['id']))
                 <?php if ($accion=="Insertar"): ?>
                   <option value="" disabled>SELECCIONA UN PAIS</option>
                 <?php else: ?>
-                  <option value="<?php echo $pais?>" disabled><?php echo obtener_pais($pais)?></option>
+                  <option value="<?php echo $pais?>" ><?php echo obtener_pais($pais)?></option>
                 <?php endif;
                   $sel_pais = $con->prepare("SELECT id, nombre FROM paices order by nombre");
                   $sel_pais -> execute();
@@ -97,9 +97,8 @@ if(isset($_GET['id']))
                 <?php if ($accion=="Insertar"): ?>
                   <option value="" disabled>SELECCIONA UN TIPO DESTINO</option>
                 <?php else: ?>
-                  <option value="<?php echo $internacional?>" disabled ><?php echo tipo_destino($internacional)?></option>
+                  <option value="<?php echo $internacional?>" ><?php echo tipo_destino($internacional)?></option>
                 <?php endif; ?>
-
                   <option value="0">NACIONAL</option>
                   <option value="1">INTERNACIONAL</option>
               </select>
@@ -114,7 +113,9 @@ if(isset($_GET['id']))
 
                   <option value="1">PLAYA</option>
                   <option value="2">MONTAÑA</option>
-                  <option value="3">TOUR UN DIA</option>
+                  <option value="3">CIUDAD</option>
+                  <option value="4">TOUR DE UN DIA</option>
+                  <option value="5">CIUDAD Y PLAYA</option>
               </select>
             </div>
           </div>
@@ -122,7 +123,7 @@ if(isset($_GET['id']))
         <div class="row">
           <div class="col s12">
             <div class="input-field">
-              <textarea name="descripcion" class="materialize-textarea" maxlength=400><?php echo $descripcion?></textarea>
+              <textarea name="descripcion" class="materialize-textarea" maxlength=800><?php echo $descripcion?></textarea>
               <label for="descripcion">Descripcion corta</label>
             </div>
           </div><!--Termina Primer columna -->
@@ -130,7 +131,7 @@ if(isset($_GET['id']))
         <div class="row">
           <div class="col s12">
             <div class="input-field">
-              <textarea name="descripcion_detallada" class="materialize-textarea" maxlength=1000><?php echo $descripcion_detallada?></textarea>
+              <textarea name="descripcion_detallada" class="materialize-textarea" maxlength=800><?php echo $descripcion_detallada?></textarea>
               <label for="descripcion_detallada">El Precio Incluye</label>
             </div>
           </div><!--Termina Primer columna -->
@@ -152,7 +153,7 @@ if(isset($_GET['id']))
           </div><!--Termina Primer columna -->
           <div class="col s6">
             <div class="input-field">
-              <textarea name="servicios_adicionales" class="materialize-textarea" maxlength=200><?php echo $servicios_adicionales?></textarea>
+              <textarea name="servicios_adicionales" class="materialize-textarea" maxlength=400><?php echo $servicios_adicionales?></textarea>
               <label for="servicios_adicionales">Servicio Adicionales</label>
             </div>
           </div><!--Termina Primer columna -->

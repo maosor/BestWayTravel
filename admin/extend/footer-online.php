@@ -30,7 +30,7 @@
         </div>
         <div class="col s11">
           <b class="white-text">Siguenos en Facebook: </b>
-          <br>/bestwaytravelcr
+          <br>@infoviajescr
         </div>
       </div>
       <div class="col l4 m4 s12">
@@ -39,8 +39,8 @@
         </div>
         <div class="col s11">
           <b class="white-text">Horarios: </b>
-          <br>Lunes a Viernes de 8:00am – 6:00pm
-          <br>Sábados de 8:00am – 12:00md
+          <br>Lunes a Viernes de 9:00am – 5:30pm
+          <br>Sábados de 9:00am – 12:00md
         </div>
       </div>
     </div>
@@ -48,8 +48,7 @@
   <div class="footer-copyright">
     <div class="container">
     © 2018 Copyright BestWay Travel
-      <img class="img right"src="admin/img/checkout-logo-small-alt-es.png" alt="">
-      <img class="img right"src="admin/img/logo-png-grey.png" height=40px alt="">
+      <img class="img right"src="admin/img/logo-png-grey.png" height=60px alt="">
     </div>
   </div>
 </footer>
