@@ -20,9 +20,9 @@ if ($del -> execute()) {
   $del_img -> bind_param('s', $id);
   $del_img -> execute();
   $del_img ->close();
-  header('location:../extend/alerta.php?msj=Paquete eliminada&c=paq&p=in&t=success');
+  header('location:../extend/alerta.php?msj=Paquete eliminado&c=paq&p=in&t=success');
 }else {
-  header('location:../extend/alerta.php?msj=Paquete no eliminada&c=paq&p=in&t=error');
+  header('location:../extend/alerta.php?msj=Paquete no eliminado&c=paq&p=in&t=error');
 }
 
 

@@ -52,7 +52,7 @@ if ($sel->fetch()) {
      <div class="card">
        <div class="card-content">
          <div class="row">
-           <div class="col s6">
+           <div class="col <?php ($lugares=='' && $servicios_adicionales == '')? print 'S12': print 'S6' ?>">
              <span class="card-title">PRECIO INCLUYE</span>
              <?php
               foreach (explode("\r\n",$descripcion_detallada) as $key => $value): ?>
@@ -62,25 +62,30 @@ if ($sel->fetch()) {
              <?php endforeach; ?>
 
            </div>
-           <div class="col s6">
-             <div class="">
-               <span class="card-title">TOURS OPCIONALES</span>
-               <?php
-                foreach (explode("\r\n",$lugares) as $key => $value): ?>
-                 <li>
-                   <?php echo $value?>
-                 </li>
-               <?php endforeach; ?>
-             </div>
-             <div class="">
-               <span class="card-title">SERVICIOS ADICIONALES</span>
-               <?php
-                foreach (explode("\r\n",$servicios_adicionales) as $key => $value): ?>
-                 <li>
-                   <?php echo $value?>
-                 </li>
-               <?php endforeach; ?>
-             </div>
+           <?php if ($lugares!=''): ?>
+             <div class="col s6">
+               <div class="">
+                 <span class="card-title">TOURS OPCIONALES</span>
+                 <?php
+                  foreach (explode("\r\n",$lugares) as $key => $value): ?>
+                   <li>
+                     <?php echo $value?>
+                   </li>
+                 <?php endforeach; ?>
+               </div>
+           <?php endif; ?>
+            <?php if ($servicios_adicionales!=''): ?>
+              <div class="">
+                <span class="card-title">SERVICIOS ADICIONALES</span>
+                <?php
+                 foreach (explode("\r\n",$servicios_adicionales) as $key => $value): ?>
+                  <li>
+                    <?php echo $value?>
+                  </li>
+                <?php endforeach; ?>
+              </div>
+            <?php endif; ?>
+
 
            </div>
          </div>

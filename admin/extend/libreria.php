@@ -29,6 +29,18 @@ function destino($destino)
   }
 
 }
+function moneda($moneda)
+{
+  if ($moneda == "USD")
+  {
+    return "DOLARES";
+  }else if($moneda == "CRC") {
+    return "COLONES";
+  }
+  else {
+    return "";
+  }
+}
 function obtener_continente($id_pais)
 {
   include '../conexion/conexion.php';

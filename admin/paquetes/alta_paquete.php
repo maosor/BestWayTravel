@@ -4,12 +4,12 @@ if(isset($_GET['id']))
 {
   $id = $con->real_escape_string(htmlentities($_GET['id']));
   $sel = $con->prepare("SELECT id, id_paquete, titulo, subtitulo, descripcion, precio, descripcion_detallada,
-    condiciones, dias, continente, pais, foto_principal, tipo_destino, internacional, oferta, mostrar, favorito,lugares, servicios_adicionales FROM paquetes
+    condiciones, dias, continente, pais, foto_principal, tipo_destino, internacional, oferta, mostrar, favorito,lugares, servicios_adicionales, moneda FROM paquetes
     WHERE id_paquete = ?");
   $sel->bind_param("s", $id);
   $sel -> execute();
   $sel->bind_result( $consecutivo, $id_paquete, $titulo, $subtitulo, $descripcion, $precio, $descripcion_detallada,
-     $condiciones, $dias, $continente, $pais, $foto_principal, $tipo_destino, $internacional, $oferta, $mostrar, $favorito, $lugares, $servicios_adicionales);
+     $condiciones, $dias, $continente, $pais, $foto_principal, $tipo_destino, $internacional, $oferta, $mostrar, $favorito, $lugares, $servicios_adicionales,$moneda);
   $sel->fetch();
   $accion = 'Actualizar';
   $sel -> close();
@@ -17,7 +17,7 @@ if(isset($_GET['id']))
   $accion = 'Insertar';
   $consecutivo =''; $id_paquete =''; $titulo =''; $subtitulo =''; $descripcion =''; $precio =''; $descripcion_detallada ='';
     $condiciones =''; $dias =''; $continente =''; $pais =''; $foto_principal =''; $tipo_destino =''; $internacional =''; $oferta ='';
-    $mostrar =''; $favorito ='';$lugares =''; $servicios_adicionales='';
+    $mostrar =''; $favorito ='';$lugares =''; $servicios_adicionales=''; $moneda ='';
   }
 
 ?>
@@ -47,7 +47,7 @@ if(isset($_GET['id']))
           <form  action="ins_paquete.php" method="post" autocomplete="off">
          <?php endif; ?>
           <div class="row">
-            <div class="col s7">
+            <div class="col s6">
               <div class="input-field">
                 <input type="text" name="titulo"  id="titulo" value="<?php echo $titulo?>" required maxlength=50>
                 <label for="titulo">Titulo</label>
@@ -59,11 +59,22 @@ if(isset($_GET['id']))
                 <label for="dias">días</label>
               </div>
             </div>
-            <div class="col s3">
+            <div class="col s2">
               <div class="input-field">
                 <input type="number" name="precio"  id="precio" value="<?php echo $precio?>" required  >
                 <label for="precio">Precio</label>
               </div>
+            </div>
+            <div class="col s2">
+              <select id="moneda" name="moneda" required>
+                <?php if ($accion=="Insertar"): ?>
+                  <option value="" disabled>SELECCIONA UNA MONEDA</option>
+                  <?php else: ?>
+                  <option value="<?php echo $moneda?>" ><?php echo moneda($moneda)?></option>
+                <?php endif; ?>
+                  <option value="USD">DOLARES</option>
+                  <option value="CRC">COLONES</option>
+              </select>
             </div>
           </div>
           <div class="row">
@@ -131,7 +142,7 @@ if(isset($_GET['id']))
         <div class="row">
           <div class="col s12">
             <div class="input-field">
-              <textarea name="descripcion_detallada" class="materialize-textarea" maxlength=800><?php echo $descripcion_detallada?></textarea>
+              <textarea name="descripcion_detallada" class="materialize-textarea" maxlength=1000><?php echo $descripcion_detallada?></textarea>
               <label for="descripcion_detallada">El Precio Incluye</label>
             </div>
           </div><!--Termina Primer columna -->
@@ -139,7 +150,7 @@ if(isset($_GET['id']))
         <div class="row">
           <div class="col s12">
             <div class="input-field">
-              <textarea name="condiciones" class="materialize-textarea" maxlength=400><?php echo $condiciones?></textarea>
+              <textarea name="condiciones" class="materialize-textarea" maxlength=800><?php echo $condiciones?></textarea>
               <label for="condiciones">Condiciones</label>
             </div>
           </div><!--Termina Primer columna -->

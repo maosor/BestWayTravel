@@ -79,6 +79,9 @@ nav ul a:hover {
   margin-top: 50px  !important;
   border-radius: 15px  !important;
 }
+.web .card-content{
+  min-height: 360px;
+}
  /***********************************
  **        CAMBIA COLORES          **
  **            DEFAULT             **

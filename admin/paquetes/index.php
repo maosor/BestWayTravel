@@ -113,7 +113,7 @@ else {
                 class="material-icons">edit</i></a></td>
               <td class="borrar"><a href="#" class="btn-floating red" onclick="swal({title: '¿Esta seguro que desea eliminar el paquete?',
                 type: 'warning',showCancelButton: true, confirmButtonColor: '#3085d6', cancelButtonColor: '#d33', confirmButtonText: 'Si, Eliminarlo!'
-              }).then((result) => { if (result.value){location.href='eliminar_paquete.php?id=<?php echo $id_paquete?>';}})"><i class="material-icons">delete</i></a></td>
+              }).then((result) => { if (result.value){location.href='eliminar_paquete.php?id=<?php echo $id_paquete?>&foto=<?php echo$foto_principal?>';}})"><i class="material-icons">delete</i></a></td>
 
             </tr>
           <?php }
