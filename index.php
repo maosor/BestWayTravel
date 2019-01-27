@@ -30,16 +30,16 @@
     <div class="row">
       <?php
       $sel_marc = $con->prepare("SELECT id, id_paquete, titulo, subtitulo, descripcion, precio, descripcion_detallada,
-        condiciones, dias, continente, pais, foto_principal, tipo_destino, internacional, favorito FROM paquetes WHERE favorito = 1 and mostrar = 1");
+        condiciones, dias, continente, pais, foto_principal, tipo_destino, internacional, favorito,moneda, prefijo FROM paquetes WHERE favorito = 1 and mostrar = 1");
       $sel_marc -> execute();
       $sel_marc -> bind_result($id, $id_paquete, $titulo, $subtitulo, $descripcion, $precio, $descripcion_detallada,
-        $condiciones, $dias, $continente, $pais, $foto_principal, $tipo_destino, $internacional, $favorito);
+        $condiciones, $dias, $continente, $pais, $foto_principal, $tipo_destino, $internacional, $favorito, $moneda, $prefijo);
       while ($sel_marc->fetch()) {?>
       <div class="col s12 m6 l3">
         <div class="card">
           <div class="card-image">
             <img src="admin/paquetes/<?php echo $foto_principal?>">
-            <span class="card-title"><?php echo '$'.number_format($precio, 2);?></span>
+            <span class="card-title"><?php echo $prefijo.' '.($moneda == 'USD'?'$':'¢').number_format($precio, 2);?></span>
           </div>
           <div class="card-content">
             <p><?php echo $descripcion?></p>

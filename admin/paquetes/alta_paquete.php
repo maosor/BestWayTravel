@@ -4,12 +4,12 @@ if(isset($_GET['id']))
 {
   $id = $con->real_escape_string(htmlentities($_GET['id']));
   $sel = $con->prepare("SELECT id, id_paquete, titulo, subtitulo, descripcion, precio, descripcion_detallada,
-    condiciones, dias, continente, pais, foto_principal, tipo_destino, internacional, oferta, mostrar, favorito,lugares, servicios_adicionales, moneda FROM paquetes
+    condiciones, dias, continente, pais, foto_principal, tipo_destino, internacional, oferta, mostrar, favorito,lugares, servicios_adicionales, moneda, prefijo FROM paquetes
     WHERE id_paquete = ?");
   $sel->bind_param("s", $id);
   $sel -> execute();
   $sel->bind_result( $consecutivo, $id_paquete, $titulo, $subtitulo, $descripcion, $precio, $descripcion_detallada,
-     $condiciones, $dias, $continente, $pais, $foto_principal, $tipo_destino, $internacional, $oferta, $mostrar, $favorito, $lugares, $servicios_adicionales,$moneda);
+     $condiciones, $dias, $continente, $pais, $foto_principal, $tipo_destino, $internacional, $oferta, $mostrar, $favorito, $lugares, $servicios_adicionales,$moneda, $prefijo);
   $sel->fetch();
   $accion = 'Actualizar';
   $sel -> close();
@@ -17,7 +17,7 @@ if(isset($_GET['id']))
   $accion = 'Insertar';
   $consecutivo =''; $id_paquete =''; $titulo =''; $subtitulo =''; $descripcion =''; $precio =''; $descripcion_detallada ='';
     $condiciones =''; $dias =''; $continente =''; $pais =''; $foto_principal =''; $tipo_destino =''; $internacional =''; $oferta ='';
-    $mostrar =''; $favorito ='';$lugares =''; $servicios_adicionales=''; $moneda ='';
+    $mostrar =''; $favorito ='';$lugares =''; $servicios_adicionales=''; $moneda =''; $prefijo='';
   }
 
 ?>
@@ -47,7 +47,7 @@ if(isset($_GET['id']))
           <form  action="ins_paquete.php" method="post" autocomplete="off">
          <?php endif; ?>
           <div class="row">
-            <div class="col s6">
+            <div class="col s4">
               <div class="input-field">
                 <input type="text" name="titulo"  id="titulo" value="<?php echo $titulo?>" required maxlength=50>
                 <label for="titulo">Titulo</label>
@@ -57,6 +57,12 @@ if(isset($_GET['id']))
               <div class="input-field">
                 <input type="number" name="dias"  id="dias" value="<?php echo $dias?>" required maxlength=2 >
                 <label for="dias">días</label>
+              </div>
+            </div>
+            <div class="col s2">
+              <div class="input-field">
+                <input type="text" name="prefijo"  id="prefijo" value="<?php echo $prefijo?>" required maxlength=10 >
+                <label for="prefijo">prefijo</label>
               </div>
             </div>
             <div class="col s2">
